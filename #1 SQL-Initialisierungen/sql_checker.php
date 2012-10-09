@@ -1,7 +1,7 @@
 <?
 
 // Einfacher SQL Connect zum Server mit Status
-// Auf Webserver ausführen
+// Auf Webserver ausführen :)
 
 $ok = 1;
 $dbuser="USERNAME	"; 		// DB Benutzername
