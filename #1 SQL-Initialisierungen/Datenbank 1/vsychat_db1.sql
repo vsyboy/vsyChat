@@ -23,11 +23,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `itschat_db2`
+-- Tabellenstruktur für Tabelle `vsychat_db1`
 --
 
-DROP TABLE IF EXISTS `itschat_db2`;
-CREATE TABLE IF NOT EXISTS `itschat_db2` (
+DROP TABLE IF EXISTS `vsychat_db1`;
+CREATE TABLE IF NOT EXISTS `vsychat_db1` (
   `id` int(11) NOT NULL,
   `receiver_user_id` int(11) NOT NULL,
   `sender_user_id` int(11) NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `itschat_db2` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Daten für Tabelle `itschat_db2`
+-- Daten für Tabelle `vsychat_db1`
 --
 
-INSERT INTO `itschat_db2` (`id`, `receiver_user_id`, `sender_user_id`, `message_id`, `timestamp`) VALUES
+INSERT INTO `vsychat_db1` (`id`, `receiver_user_id`, `sender_user_id`, `message_id`, `timestamp`) VALUES
 (0, 4, 1, 0, '2012-10-09 10:42:01');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
