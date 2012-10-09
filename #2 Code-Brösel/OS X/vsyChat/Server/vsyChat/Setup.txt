@@ -1,0 +1,8 @@
+Setup:
+
+Build Settings:
+Header Search Paths: /usr/local/mysql/include/ 
+Library Search Paths: /usr/local/mysql/lib/ 
+Other Linker Flags: -lmysqlclient -lm -lz 
+
+SQL Package mysql-5.5.28-osx10.6-x86_64.dmg
