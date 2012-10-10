@@ -13,7 +13,8 @@
 
 int main()
 {
-    MYSQL *connect; 
+    MYSQL *connect1;
+    MYSQL *connect2;
     connect1=mysql_init(NULL); // Initialisieren
     connect2=mysql_init(NULL); // Initialisieren
     
@@ -28,11 +29,11 @@ int main()
     connect1=mysql_real_connect(connect1,SERVER1,USER1,PASSWORD1,DATABASE1,0,NULL,0);
     
     if(connect1){
-        printf("Connection Succeeded\n");
+        printf("Verbindung OK\n");
     }
     
     else{
-        printf("Connection Failed!\n");
+        printf("Verbindung fehlgeschlagen!\n");
         
         /* Hier auf den anderen Server connecten! */
         connect2=mysql_real_connect(connect2,SERVER2,USER2,PASSWORD2,DATABASE2,0,NULL,0);
