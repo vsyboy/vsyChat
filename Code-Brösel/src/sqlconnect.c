@@ -74,7 +74,7 @@ int main()
         /* Send a query to the database. */
         unsigned int i = 0; /* Create a counter for the rows */
         
-        res_set = mysql_store_result(connect);
+        res_set = mysql_store_result(connect1);
         /* Receive the result and store it in res_set */
         
         unsigned int numrows = mysql_num_rows(res_set);
@@ -86,7 +86,7 @@ int main()
             printf("%s\n",row[i] != NULL ?
                    row[i] : "NULL"); /* Print the row data */
         }
-        mysql_close(connect);   /* Close and shutdown */
+        mysql_close(connect1);   /* Close and shutdown */
 
     }
     
