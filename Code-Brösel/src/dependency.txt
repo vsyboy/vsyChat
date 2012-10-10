@@ -1,0 +1,6 @@
+Open your project settings and go to linker. 
+
+- Add additional dependency : libmysql.lib 
+
+Make sure you have the include files, libraries, and binary files. 
+If you don't have it then just download MySQL Server without the installer, then point the include paths for your project to the lib directories for mysql that you downloaded.
