@@ -1,6 +1,7 @@
-#include "my_global.h" // Include this file first to avoid problems
-#include "mysql.h" // MySQL Include File
-#define SERVER11 "localhost"
+#include "my_global.h" 
+#include "mysql.h" // MySQL Include 
+
+#define SERVER1 "localhost"
 #define USER1 "username"
 #define PASSWORD1 "password"
 #define DATABASE1 "databasename"
@@ -13,49 +14,83 @@
 int main()
 {
     MYSQL *connect; 
-    connect=mysql_init(NULL); // Initialisieren
+    connect1=mysql_init(NULL); // Initialisieren
+    connect2=mysql_init(NULL); // Initialisieren
     
     /* Initialisierung prüfen */
-    if(!connect)   
+    if(!connect1 || !connect2)
     {
-        fprintf(stderr,"MySQL Initialization Failed");
+        fprintf(stderr,"MySQL Initialisierung auf mind. einer Instanz failed");
         return 1;
     }
  
     
-    connect=mysql_real_connect(connect,SERVER1,USER1,PASSWORD1,DATABASE1,0,NULL,0);
+    connect1=mysql_real_connect(connect1,SERVER1,USER1,PASSWORD1,DATABASE1,0,NULL,0);
     
-    if(connect){
+    if(connect1){
         printf("Connection Succeeded\n");
     }
+    
     else{
         printf("Connection Failed!\n");
         
         /* Hier auf den anderen Server connecten! */
-        connect=mysql_real_connect(connect,SERVER2,USER2,PASSWORD2,DATABASE2,0,NULL,0);
-
+        connect2=mysql_real_connect(connect2,SERVER2,USER2,PASSWORD2,DATABASE2,0,NULL,0);
+        
         
     }
     
-    
-    MYSQL_RES *res_set; /* Create a pointer to recieve the return value.*/
-    MYSQL_ROW row;  /* Assign variable for rows. */
-    mysql_query(connect,"SELECT * FROM TABLE");
-    /* Send a query to the database. */
-    unsigned int i = 0; /* Create a counter for the rows */
-    
-    res_set = mysql_store_result(connect);
-    /* Receive the result and store it in res_set */
-    
-    unsigned int numrows = mysql_num_rows(res_set);
-    /* Create the count to print all rows */
-    
-    
-    /* This while is to print all rows and not just the first row found, */
-    while ((row = mysql_fetch_row(res_set)) != NULL){
-        printf("%s\n",row[i] != NULL ?
-               row[i] : "NULL"); /* Print the row data */
+    if (connect2){
+        
+        MYSQL_RES *res_set; /* Create a pointer to recieve the return value.*/
+        MYSQL_ROW row;  /* Assign variable for rows. */
+        mysql_query(connect2,"SELECT * FROM TABLE");
+        /* Send a query to the database. */
+        unsigned int i = 0; /* Create a counter for the rows */
+        
+        res_set = mysql_store_result(connect2);
+        /* Receive the result and store it in res_set */
+        
+        unsigned int numrows = mysql_num_rows(res_set);
+        /* Create the count to print all rows */
+        
+        
+        /* This while is to print all rows and not just the first row found, */
+        while ((row = mysql_fetch_row(res_set)) != NULL){
+            printf("%s\n",row[i] != NULL ?
+                   row[i] : "NULL"); /* Print the row data */
+        }
+        mysql_close(connect2);   /* Close and shutdown */
+
     }
-    mysql_close(connect);   /* Close and shutdown */
-    return 0;
+    
+    
+    else if (connect1){
+        
+        MYSQL_RES *res_set; /* Create a pointer to recieve the return value.*/
+        MYSQL_ROW row;  /* Assign variable for rows. */
+        mysql_query(connect,"SELECT * FROM TABLE");
+        /* Send a query to the database. */
+        unsigned int i = 0; /* Create a counter for the rows */
+        
+        res_set = mysql_store_result(connect);
+        /* Receive the result and store it in res_set */
+        
+        unsigned int numrows = mysql_num_rows(res_set);
+        /* Create the count to print all rows */
+        
+        
+        /* This while is to print all rows and not just the first row found, */
+        while ((row = mysql_fetch_row(res_set)) != NULL){
+            printf("%s\n",row[i] != NULL ?
+                   row[i] : "NULL"); /* Print the row data */
+        }
+        mysql_close(connect);   /* Close and shutdown */
+
+    }
+    
+    else {
+        printf("Uh oh...");
+    }
+      return 0;
 }
