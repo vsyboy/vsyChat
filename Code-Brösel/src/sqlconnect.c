@@ -1,9 +1,14 @@
 #include "my_global.h" // Include this file first to avoid problems
 #include "mysql.h" // MySQL Include File
-#define SERVER "localhost"
-#define USER "username"
-#define PASSWORD "password"
-#define DATABASE "databasename"
+#define SERVER11 "localhost"
+#define USER1 "username"
+#define PASSWORD1 "password"
+#define DATABASE1 "databasename"
+
+#define SERVER2 "localhost"
+#define USER2 "username"
+#define PASSWORD2 "password"
+#define DATABASE2 "databasename"
 
 int main()
 {
@@ -18,7 +23,7 @@ int main()
     }
  
     
-    connect=mysql_real_connect(connect,SERVER,USER,PASSWORD,DATABASE,0,NULL,0);
+    connect=mysql_real_connect(connect,SERVER1,USER1,PASSWORD1,DATABASE1,0,NULL,0);
     
     if(connect){
         printf("Connection Succeeded\n");
@@ -27,9 +32,12 @@ int main()
         printf("Connection Failed!\n");
         
         /* Hier auf den anderen Server connecten! */
-        
+        connect=mysql_real_connect(connect,SERVER2,USER2,PASSWORD2,DATABASE2,0,NULL,0);
+
         
     }
+    
+    
     MYSQL_RES *res_set; /* Create a pointer to recieve the return value.*/
     MYSQL_ROW row;  /* Assign variable for rows. */
     mysql_query(connect,"SELECT * FROM TABLE");
